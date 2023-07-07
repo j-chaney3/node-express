@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const campsiteRouter = require('./routes/campsiteRouter');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -9,6 +10,8 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));
 app.use(express.json()); //handles parson json into js properties
+
+app.use('/campsites/', campsiteRouter);
 
 app.all('/campsites', (req, res, next) => {
 	res.statusCode = 200;
